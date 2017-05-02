@@ -6,9 +6,12 @@
   "scripts": {
     "start": "webpack-dev-server -w",
     "build": "webpack -p",
-    "server": "nodemon server/server.js",
+    "server:dev": "nodemon server/server.js",
+    "server": "node server/server.js",
     "debug": "nodemon --inspect server/server.js",
-    "test": "jest -w"
+    "test": "jest -w",
+    "heroku-prebuild": "",
+    "heroku-postbuild": "webpack -p --config ./webpack.config.js --progress"
   },
   "dependencies": {
     "body-parser": "^1.17.1",

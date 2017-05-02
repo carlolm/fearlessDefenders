@@ -1,7 +1,7 @@
 import React from 'react';
 
 const App = () => (
-  <div>Hello Friends</div>
+  <div>Hello Friends!</div>
 );
 
 App.propTypes = {
