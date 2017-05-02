@@ -1,13 +1,14 @@
-# Project Name
+# Hack Trader
 
 > Pithy project description
+Trading strategies based on sentiment analyses.
 
-## Team
+## Fearless Defenders
 
-  - teamMember
-  - teamMember
-  - teamMember
-  - teamMember
+  - Carlo Las Marias
+  - Vaggelis Sotiropoulos
+  - Michael Kass
+  - Caleb Cordry
 
 ## Table of Contents
 
@@ -22,6 +23,7 @@
 ## Usage
 
 > Some usage instructions
+Type a stock in the search bar to see which stocks are popular among consumers to better predict future company value.
 
 ## Requirements
 
