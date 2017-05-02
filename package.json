@@ -11,7 +11,8 @@
     "debug": "nodemon --inspect server/server.js",
     "test": "jest -w",
     "heroku-prebuild": "",
-    "heroku-postbuild": ""
+    "heroku-postbuild": "",
+    "lint": "eslint ."
   },
   "dependencies": {
     "body-parser": "^1.17.1",
