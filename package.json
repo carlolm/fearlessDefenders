@@ -11,7 +11,7 @@
     "debug": "nodemon --inspect server/server.js",
     "test": "jest -w",
     "heroku-prebuild": "",
-    "heroku-postbuild": "webpack -p --config ./webpack.config.js --progress"
+    "heroku-postbuild": ""
   },
   "dependencies": {
     "body-parser": "^1.17.1",
