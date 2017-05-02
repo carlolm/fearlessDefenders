@@ -27,11 +27,7 @@ Type a stock in the search bar to see which stocks are popular among consumers t
 
 ## Requirements
 
-- Node 6.4.x
-- Redis 2.6.x
-- Postgresql 9.1.x
-- etc
-- etc
+See package.json file
 
 ## Development
 
@@ -40,13 +36,11 @@ Type a stock in the search bar to see which stocks are popular among consumers t
 From within the root directory:
 
 ```sh
-npm install -g bower
-npm install
-bower install
+yarn install OR npm install
 ```
 
 ### Roadmap
-
+TODO
 View the project roadmap [here](LINK_TO_DOC)
 
 
