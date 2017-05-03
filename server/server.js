@@ -38,5 +38,11 @@ app.get('/', (req, res) => {
   res.end('Hello Get World');
 });
 
+
+app.get('/*', (req, res) => {
+  res.writeHead(404, headers);
+  res.end('Resource not found');
+});
+
 app.listen(3000);
 
