@@ -4,7 +4,9 @@ import './css/Main.css';
 
 
 const Main = ({}) => (
-  <div className="main">Main</div>
+  <div className="main">
+    <h2>Main</h2>
+  </div>
 );
 
 Main.propTypes = {
