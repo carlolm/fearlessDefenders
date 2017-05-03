@@ -1,0 +1,20 @@
+.search {
+  padding: 20px 50px;
+}
+
+.search input {
+  height: 25px;
+  background-color: #fafafa;
+  border: 2px solid #ccc;
+}
+
+.search input[type="text"] {
+  padding-left: 10px;
+  font-size: 1rem;
+}
+
+.search label {
+  height: 100px;
+  background-color: #fafafa;
+  border: 2px solid #f2f2f2;
+}

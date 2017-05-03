@@ -1,0 +1,32 @@
+* {
+  font-family: 'Helvetica Neue';
+}
+
+.header {
+  min-height: 4rem;
+  background-color: #121212;
+  color: white;
+  display: flex;
+}
+
+.header h1 {
+  font-size: 1.1rem;
+  padding: 15px 70px;
+}
+
+.nav {
+  min-height: 5rem;
+  background-color: #323232;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.content {
+  display: flex;
+  min-height: 700px;
+}
+
+
+
+/*#9855d4, #d7aaff, #323232, #121212*/
