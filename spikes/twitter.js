@@ -1,5 +1,5 @@
 const Twitter = require('twitter');
-const Keys = require('./twitter_keys.js').keys_underscore;
+const Keys = require('./twitter_keys.js');
 
 const client = new Twitter({
   consumer_key: Keys.consumer_key,
@@ -15,7 +15,7 @@ const client = new Twitter({
 //   access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
 // });
 
-const showStream = true;
+const showStream = false;
 
 /**
  *  Twitter: general search

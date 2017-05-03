@@ -1,5 +1,5 @@
 const Twitter = require('twitter-node-client').Twitter;
-const Keys = require('./twitterKeys.js').keys;
+const Keys = require('./twitterKeys.js');
 
 const error = function (err, response, body) {
   console.log(body);
@@ -27,10 +27,10 @@ const success = function (data) {
 };
 
 const keys = {
-  consumerKey: Keys.consumerKey,
-  consumerSecret: Keys.consumerSecret,
-  accessToken: Keys.accessToken,
-  accessTokenSecret: Keys.accessTokenSecret,
+  consumerKey: Keys.consumer_key,
+  consumerSecret: Keys.consumer_secret,
+  accessToken: Keys.access_token_key,
+  accessTokenSecret: Keys.access_token_secret,
 };
 
 const twitter = new Twitter(keys);
