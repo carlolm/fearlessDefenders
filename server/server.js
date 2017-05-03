@@ -12,7 +12,7 @@ const headers = {
   'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE',
 };
 
-app.use(express.static(path.join(__dirname, '/build')));
+app.use(express.static(path.join(__dirname, 'build')));
 
 app.use((req, res, next) => {
   res.header(headers);
