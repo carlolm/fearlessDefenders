@@ -29,6 +29,7 @@ node_modules/
 bower_components/
 
 ## API keys ##
+spikes/twitterKeys.js
 
 # Change according to file path
 
