@@ -40,7 +40,7 @@ app.get('/', (req, res) => {
 });
 
 
-app.get('/*', (req, res) => {
+app.get('*', (req, res) => {
   res.writeHead(404, headers);
   res.end('Resource not found');
 });
