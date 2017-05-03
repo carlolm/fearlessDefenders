@@ -1,7 +1,6 @@
 # Hack Trader
 
-> Pithy project description
-Trading strategies based on sentiment analyses.
+> Trading strategies based on sentiment analyses.
 
 ## Fearless Defenders
 
