@@ -12,7 +12,7 @@ const headers = {
   'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE',
 };
 
-app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join(__dirname, '../build')));
 
 app.use((req, res, next) => {
   res.header(headers);
@@ -35,8 +35,8 @@ app.post('/', (req, res) => {
 // });
 
 app.get('/', (req, res) => {
-  res.writeHead(200, headers);
-  res.sendFile('./index.html');
+  // res.writeHead(200, headers);
+  res.status(200).sendFile('./index.html');
 });
 
 
@@ -45,5 +45,5 @@ app.get('*', (req, res) => {
   res.end('Resource not found');
 });
 
-app.listen(process.env.PORT || 3000);
+app.listen(process.env.PORT || 1337);
 
