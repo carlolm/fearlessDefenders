@@ -1,5 +1,5 @@
 const Twitter = require('twitter');
-const Keys = require('./twitterKeys.js').keys_underscore;
+const Keys = require('./twitter_keys.js').keys_underscore;
 
 const client = new Twitter({
   consumer_key: Keys.consumer_key,
@@ -52,7 +52,7 @@ if (!showStream) {
 
 if (showStream) {
   const params = {
-    track: '$AAPL',
+    track: '#trump',
   };
 
   const stream = client.stream('statuses/filter', params);
