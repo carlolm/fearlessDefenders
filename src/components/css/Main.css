@@ -1,3 +1,8 @@
 .main {
   flex: 3;
+  color: #562f72;
+}
+
+.main h2 {
+  padding-left: 50px;
 }
