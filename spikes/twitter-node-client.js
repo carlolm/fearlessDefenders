@@ -15,7 +15,7 @@ const success = function (data) {
   if (Array.isArray(tweets)) {
     tweets.forEach((tweet) => {
       console.log('------- ', tweet.created_at);
-      console.log('@', tweet.user.screen_name, '(', tweet.user.name, ')');
+      // console.log('@', tweet.user.screen_name, '(', tweet.user.name, ')');
       console.log('=> ', tweet.text);
     });
 
@@ -54,7 +54,7 @@ const twitter = new Twitter(keys);
 // search?l=&q=hack%20reactor%20since%3A2017-03-26%20until%3A2017-03-27&src=typd
 
 const params = {
-  q: 'hack reactor since:2017-03-26 until:2017-03-27',
+  q: '$AAPL stock',
   count: 100,
 };
 
