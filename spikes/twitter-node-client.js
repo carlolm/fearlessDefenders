@@ -1,4 +1,5 @@
 const Twitter = require('twitter-node-client').Twitter;
+const Keys = require('./twitterKeys.js').keys;
 
 const error = function (err, response, body) {
   console.log(body);
@@ -26,10 +27,10 @@ const success = function (data) {
 };
 
 const keys = {
-  consumerKey: 'jBrT5Q9qLNxWhvbW0qvzjr8vx',
-  consumerSecret: 'Uep32JVmIudT2wKZMVMlf8vDoQBw8BiB4RRDcZuqNkGIdmbZQu',
-  accessToken: '259838174-HPTZh8gs8lA3fjznvWZq4JSId0nofTnFraqCNBDU',
-  accessTokenSecret: 'JZgEpWBk8eTnMzMt4RuwB3AJSFFI7566rcIuuWXyyZALJ',
+  consumerKey: Keys.consumerKey,
+  consumerSecret: Keys.consumerSecret,
+  accessToken: Keys.accessToken,
+  accessTokenSecret: Keys.accessTokenSecret,
 };
 
 const twitter = new Twitter(keys);
