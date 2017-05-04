@@ -4,14 +4,14 @@
   "author": "Vaggelis Sotiropoulos, Michael Kass, Carlo Las Marias & Caleb Cordry",
   "license": "ISC",
   "scripts": {
-    "start": "webpack-dev-server -w",
     "build": "webpack -p",
+    "debug": "nodemon --inspect server/server.js",
+    "heroku-postbuild": "npm run build",
+    "lint": "eslint .",
+    "start": "webpack-dev-server -w",
     "server:dev": "nodemon server/server.js",
     "server": "node server/server.js",
-    "debug": "nodemon --inspect server/server.js",
-    "test": "jest -w",
-    "heroku-postbuild": "npm run build",
-    "lint": "eslint ."
+    "test": "jest -w"
   },
   "dependencies": {
     "bluebird": "^3.5.0",
@@ -26,8 +26,7 @@
     "request": "^2.81.0",
     "twitter": "^1.7.0",
     "twitter-node-client": "0.0.6",
-    "watson-developer-cloud": "^2.31.0",
-    "webpack": "^2.4.1"
+    "watson-developer-cloud": "^2.31.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",

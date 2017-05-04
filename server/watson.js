@@ -1,5 +1,5 @@
 const watson = require('watson-developer-cloud');
-const keys = require('./config');
+const keys = require('../config');
 
 const toneAnalyzer = watson.tone_analyzer({
   username: keys.watson.username,
