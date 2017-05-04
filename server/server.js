@@ -22,14 +22,16 @@ app.get('/api/watson', (req, res) => {
     ],
   };
 
-  toneAnalyzer.tone(input, (err, tone) => {
+  toneAnalyzer.tone_chat(input, (err, tone) => {
     if (err) { return console.warn(err); }
     return res.send(tone);
   });
 });
 
-app.get('/:bad', (req, res) => {
-  res.status(404).send(`Resource not found ${req.params.bad}`);
+app.get('/:bad*', (req, res) => {
+  res.status(404).send(`Resource not found '${req.params.bad}'`);
 });
 
-app.listen(process.env.PORT || 3000);
+app.listen(process.env.PORT || 3000, () => {
+  console.warn('Backend server listening on port 3000!');
+});
