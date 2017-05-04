@@ -36,4 +36,3 @@ server/config.js
 
 # Local config files
 .vscode/
-yarn.lock
