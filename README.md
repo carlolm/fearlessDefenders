@@ -21,7 +21,6 @@
 
 ## Usage
 
-> Some usage instructions
 Type a stock in the search bar to see which stocks are popular among consumers to better predict future company value.
 
 ## Requirements
