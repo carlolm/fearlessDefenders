@@ -4,6 +4,13 @@
   "scripts": {
   },
   "env": {
+    "NPM_CONFIG_PRODUCTION": { "required": true },
+    "TW_ACCESS_TOKEN": { "required": true },
+    "TW_ACCESS_TOKEN_SECRET": { "required": true },
+    "TW_CONSUMER_KEY": { "required": true },
+    "TW_CONSUMER_SECRET": { "required": true },
+    "WATSON_PASSWORD": { "required": true },
+    "WATSON_USERNAME": { "required": true },
   },
   "formation": {
   },
