@@ -33,3 +33,6 @@ spikes/twitter_keys.js
 
 # Change according to file path
 server/config.js
+
+# Local config files
+.vscode/

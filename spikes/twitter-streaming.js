@@ -1,5 +1,5 @@
 const Twitter = require('twitter');
-const Keys = require('./twitter_keys.js');
+const Keys = require('../server/config.js').twitter;
 
 const client = new Twitter({
   consumer_key: Keys.consumer_key,

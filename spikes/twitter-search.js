@@ -1,5 +1,5 @@
 const Twitter = require('twitter-node-client').Twitter;
-const Keys = require('./twitter_keys.js');
+const Keys = require('../server/config.js').twitter;
 const Promise = require('bluebird');
 
 const keys = {
