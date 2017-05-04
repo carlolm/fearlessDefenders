@@ -5,7 +5,7 @@ if (env === 'development'){
 }
 
 if(env === 'production'){
-    config = require('./env/config.prod.js');
+    config = require('./config.prod.js');
 }
 
 module.exports = config;
