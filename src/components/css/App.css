@@ -21,7 +21,6 @@
 }
 
 .nav {
-  min-height: 5rem;
   background-color: #323232;
   display: flex;
   justify-content: flex-end;
