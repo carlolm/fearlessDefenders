@@ -37,3 +37,5 @@ server/config.js
 # Local config files
 vscode/
 /config/config.dev.js
+*.DS_Store
+config.js

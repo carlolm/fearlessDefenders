@@ -1,6 +1,5 @@
 const Twitter = require('twitter');
-
-const Keys = require('../config').twitter;
+const Keys = require('../server/config.js').twitter;
 
 const client = new Twitter({
   consumer_key: Keys.consumer_key,
@@ -67,3 +66,4 @@ if (showStream) {
     console.warn(error);
   });
 }
+
