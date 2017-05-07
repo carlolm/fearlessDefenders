@@ -1,27 +1,20 @@
 import React from 'react';
-<<<<<<< HEAD
 
 // will install chartjs serverside
 // import '../Chart.js/Chart.js'
 
-=======
->>>>>>> (feat) begginings of chart component
 import '../Chart.js/Chart.js'
+
+// will install chartjs serverside
+// import '../Chart.js/Chart.js'
 
 class stockChart extends React.Component {
   constructor(props) {
     super(props);
   }
   get() {
-<<<<<<< HEAD
 
     /* Syntax for creating new chart
-=======
->>>>>>> (feat) begginings of chart component
-=======
->>>>>>> (feat) begginings of chart component
-=======
->>>>>>> (feat) begginings of chart component
     let labels = [];
     let data = [];
     for (let i = 0; i < 5; i++) {
@@ -65,10 +58,9 @@ class stockChart extends React.Component {
         }
       }
     });
-<<<<<<< HEAD
+
     */
-=======
->>>>>>> (feat) begginings of chart component
+
   }
   render() {
     return (
@@ -78,10 +70,3 @@ class stockChart extends React.Component {
 }
 
 export default stockChart
-<<<<<<< HEAD
-=======
-
-
-
-export stockChart;
->>>>>>> (feat) begginings of chart component
