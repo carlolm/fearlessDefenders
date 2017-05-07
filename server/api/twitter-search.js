@@ -17,7 +17,7 @@ const yyyymmdd = (date) => {
   const dd = date.getDate();
 
   return [date.getFullYear(), '-', (mm > 9 ? '' : '0') + mm, '-', (dd > 9 ? '' : '0') + dd].join('');
-}
+};
 
 /**
  * Helper function that loops through promises (getting tweets)
@@ -62,12 +62,9 @@ const getTweetSet = (query, startDate, endDate, maxTweets, callback) => {
   let tweetCount = 0;
   let endOfResults = false;
 
-  console.log('END DATE: ', endDate);
   endDate = new Date(endDate);
-  console.log('END DATE: ', endDate);
   endDate.setDate(endDate.getDate() + 2);
   endDate = yyyymmdd(new Date(endDate));
-  console.log('END DATE: ', endDate);
 
   // Last tweet retrieved from current "page" of retrieved tweets
   // = the starting point for the next call to retrieve tweets
@@ -121,13 +118,11 @@ const getTweetSet = (query, startDate, endDate, maxTweets, callback) => {
           if (tweets.length === 0) {
             endOfResults = true;
           } else {
-            tweetsArray = tweets.map((tweet) => {
-              return {
-                id: tweet.id,
-                created_at: tweet.created_at,
-                text: tweet.text,
-              };
-            });
+            tweetsArray = tweets.map(tweet => ({
+              id: tweet.id,
+              created_at: tweet.created_at,
+              text: tweet.text,
+            }));
             tweetSet = tweetSet.concat(tweetsArray);
             maxId = tweetsArray[tweetsArray.length - 1].id;
             tweetCount += tweetsArray.length;
@@ -161,14 +156,12 @@ const getTweetSet = (query, startDate, endDate, maxTweets, callback) => {
 // });
 
 const getTweets = (req, res) => {
-
   const query = req.body.query;
   const endDate = req.body.endDate || new Date();
   const startDate = req.body.startDate || new Date(endDate - (1000 * 60 * 60 * 24 * 2));
   const maxTweets = req.body.maxTweets || 1000;
 
   getTweetSet(query, startDate, endDate, maxTweets, (tweetSet) => {
-
     console.log('*** REQ.BODY ***', query, startDate, endDate, maxTweets);
 
     console.log('*** Tweets received *** [', tweetSet.length, ']');
@@ -179,7 +172,7 @@ const getTweets = (req, res) => {
         first: tweetSet[tweetSet.length - 1].created_at,
         last: tweetSet[0].created_at,
         tweetCount: tweetSet.length,
-        text: tweetSet.reduce((a, b) => a + ' ' + b.text, ''),
+        text: tweetSet.reduce((a, b) => `${a} ${b.text}`, ''),
       });
     } else {
       res.send({ message: 'no tweets received' });
