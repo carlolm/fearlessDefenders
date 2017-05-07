@@ -30,6 +30,25 @@ app.get('/api/watson', (req, res) => {
 });
 
 app.post('/api/tweets', TwitterSearch.getTweets);
+/**
+ * Get an object with tweet data for use in sending to watson
+ * @function
+ * @param {string} req.body.query - Query string (e.g. '$AAPL' for apple stock ticker)
+ * @param {string} req.body.endDate [optional] - latest date of tweets to retrieve 'yyyy-mm-dd'
+ *                                  Default value: current date + 1
+ * @param {string} req.body.startDate [optional] - earliest date of tweets to retrieve 'yyyy-mm-dd'
+ *                                    Default value: endDate minus 1 day
+ * @param {string} req.body.maxTweets [optional] - max number of tweets to retrieve
+ *                                    Default value: 1000
+ *
+ * @return {object}   {
+ *                      first: [date/time of least recent tweet],
+ *                      last: [date/time of most recent tweet],
+ *                      tweetCount: [number of tweets received],
+ *                      tweet: [string object of aggregated tweets returned],
+ *                    }
+ */
+
 
 app.get('/:bad*', (req, res) => {
   res.status(404).send(`Resource not found '${req.params.bad}'`);
