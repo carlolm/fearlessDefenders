@@ -66,3 +66,4 @@ class stockChart extends React.Component {
 }
 
 export default stockChart
+
