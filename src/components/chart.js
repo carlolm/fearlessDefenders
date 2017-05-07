@@ -3,11 +3,6 @@ import React from 'react';
 // will install chartjs serverside
 // import '../Chart.js/Chart.js'
 
-import '../Chart.js/Chart.js'
-
-// will install chartjs serverside
-// import '../Chart.js/Chart.js'
-
 class stockChart extends React.Component {
   constructor(props) {
     super(props);
@@ -58,9 +53,7 @@ class stockChart extends React.Component {
         }
       }
     });
-
     */
-
   }
   render() {
     return (
