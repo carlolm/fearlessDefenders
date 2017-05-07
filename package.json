@@ -17,6 +17,7 @@
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.1",
     "bookshelf": "^0.10.3",
+    "chart.js": "^2.5.0",
     "cookie-parser": "^1.4.3",
     "express": "^4.15.2",
     "knex": "^0.13.0",

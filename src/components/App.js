@@ -4,6 +4,7 @@ import Search from './Search';
 import Sidebar from './Sidebar';
 import Main from './Main';
 import Tweets from './Tweets';
+import stockChart from './chart.js'
 
 import './css/App.css';
 
@@ -19,6 +20,7 @@ const App = () => (
       <Sidebar />
       <Main />
       <Tweets />
+      <stockChart />
     </div>
   </div>
 );
