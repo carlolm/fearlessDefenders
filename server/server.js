@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 
 const toneAnalyzer = require('./watson');
+const TwitterSearch = require('./api/twitter-search.js');
 
 const app = express();
 
@@ -27,6 +28,8 @@ app.get('/api/watson', (req, res) => {
     return res.send(tone);
   });
 });
+
+app.post('/api/tweets', TwitterSearch.getTweets);
 
 app.get('/:bad*', (req, res) => {
   res.status(404).send(`Resource not found '${req.params.bad}'`);
