@@ -3,17 +3,16 @@ import io from 'socket.io-client';
 import TweetStreamEntry from './TweetStreamEntry';
 import './css/TweetStream.css';
 
-const socketURL = process.env.ROOT_URL || 'https://hack-trader-staging.herokuapp.com';
+// const socketURL = process.env.ROOT_URL || 'http://localhost';
+// console.log('*** socketURL ***', socketURL);
 
-console.log('*** socketURL ***', socketURL);
-
-const socket = io(`${socketURL}:5000`);
+const socket = io(`${window.location.hostname}:3000`);
 
 class TweetStream extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ticker: '$GOOG',
+      ticker: '@realDonaldTrump',
       showStream: true,
       tweetStream: [],
     };

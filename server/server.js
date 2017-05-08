@@ -2,7 +2,6 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const path = require('path');
-// const cors = require('cors');
 
 const TwitterSearch = require('./api/twitter-search.js');
 const TwitterStream = require('./api/twitter-stream.js').twitterClient;
@@ -13,11 +12,9 @@ const naturalLanguage = require('./watson');
 
 const app = express();
 
-// Needed for socket.io
-const http = require('http');
-
-const socketApp = http.createServer();
-const io = socket.listen(socketApp);
+/**
+ *  EXPRESS CONFIG
+ */
 
 app.use(express.static(path.join(__dirname, '../build')));
 
@@ -25,6 +22,7 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// const cors = require('cors');
 // app.use(cors());
 
 app.post('/api/watson', (req, res) => {
@@ -33,6 +31,23 @@ app.post('/api/watson', (req, res) => {
     .then(response => res.send(response))
     .catch(err => res.send(err));
 });
+
+/**
+ *    SOCKET IO CONFIG
+ */
+
+const http = require('http');
+
+const server = http.Server(app);
+const io = socket.listen(server);
+
+// Heroku won't actually allow us to use WebSockets
+// so we have to setup polling instead.
+// https://devcenter.heroku.com/articles/using-socket-io-with-node-js-on-heroku
+// io.configure(function () {  
+// io.set("transports", ["xhr-polling"]); 
+// io.set("polling duration", 10); 
+// });
 
 app.post('/api/tweets', TwitterSearch.getTweets);
 /**
@@ -59,6 +74,7 @@ app.post('/api/tweets', TwitterSearch.getTweets);
 let stream;
 
 app.post('/api/stream', (req, res) => {
+  console.log('[server] api/stream - STREAMING REQUEST', req.body.ticker);
   if (stream) stream.destroy();
 
   const showStream = req.body.showStream || false;
@@ -97,10 +113,10 @@ app.get('/:bad*', (req, res) => {
   res.status(404).send(`Resource not found '${req.params.bad}'`);
 });
 
-app.listen(process.env.PORT || 3000, () => {
+server.listen(process.env.PORT || 3000, () => {
   console.warn('Backend server listening on port 3000!');
 });
 
-socketApp.listen(5000, () => {
-  console.warn('Socket IO server listening on port 5000!');
-});
+// socketApp.listen(5000, () => {
+//   console.warn('Socket IO server listening on port 5000!');
+// });
