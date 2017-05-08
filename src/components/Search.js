@@ -10,7 +10,7 @@ class Search extends React.Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleSumbit = this.handleSumbit.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(e) {
@@ -19,14 +19,14 @@ class Search extends React.Component {
     this.setState({ searchValue });
   }
 
-  handleSumbit(e) {
+  handleSubmit(e) {
     e.preventDefault();
-    console.log(this.state.searchValue + ' Submitted')
+    console.log(`${this.state.searchValue} Submitted`);
   }
 
   render() {
     return (
-      <form className="search" onSubmit={this.handleSumbit}>
+      <form className="search" onSubmit={this.handleSubmit}>
         <input
           type="text"
           onChange={this.handleChange}

@@ -2,9 +2,13 @@ import React from 'react';
 
 import './css/Tweets.css';
 
-const Tweets = ({}) => (
+import TweetTabs from './TweetTabs.js';
+
+
+const Tweets = () => (
   <div className="tweets">
     <h2>Tweets</h2>
+    <TweetTabs />
   </div>
 );
 
