@@ -3,7 +3,9 @@ import io from 'socket.io-client';
 import TweetStreamEntry from './TweetStreamEntry';
 import './css/TweetStream.css';
 
-const socketURL = process.env.ROOT_URL || 'http://localhost';
+const socketURL = process.env.ROOT_URL || 'https://hack-trader-staging.herokuapp.com';
+
+console.log('*** socketURL ***', socketURL);
 
 const socket = io(`${socketURL}:5000`);
 
