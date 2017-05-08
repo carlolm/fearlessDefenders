@@ -23,15 +23,15 @@ class TickerSearch extends Component {
 
     const options = {
       method: 'GET',
-      // headers: {
-      //   Accept: 'application/json',
-      //   'Content-Type': 'application/x-www-form-urlencoded',
-      //   mode: 'cors',
-      //   'Access-Control-Allow-Origin': '*',
-      // },
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded',
+        mode: 'cors',
+        'Access-Control-Allow-Origin': '*',
+      },
     };
 
-    fetch('http://d.yimg.com/aq/autoc?query=apple&region=US&lang=en-US', options)
+    fetch(`http://d.yimg.com/aq/autoc?query=${this.state.companyName}&region=US&lang=en-US`, options)
     .then(data => console.log(data))
     .catch(err => console.warn(err));
   }
