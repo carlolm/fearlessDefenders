@@ -6,13 +6,19 @@ import './css/TweetStream.css';
 // const socketURL = process.env.ROOT_URL || 'http://localhost';
 // console.log('*** socketURL ***', socketURL);
 
-const socket = io(window.location.hostname);
+console.log(' HOSTNAME: ', window.location.hostname, window.location.hostname.indexOf('local'));
+
+const socketURL = (window.location.hostname.indexOf('local') !== -1) ? `${window.location.hostname}:3000` : window.location.hostname;
+
+console.log(socketURL);
+
+const socket = io(socketURL);
 
 class TweetStream extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ticker: '@realDonaldTrump',
+      ticker: '$AAPL',
       showStream: true,
       tweetStream: [],
     };
