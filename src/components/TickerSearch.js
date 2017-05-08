@@ -20,6 +20,20 @@ class TickerSearch extends Component {
   handleSubmit(e) {
     e.preventDefault();
     console.log(`${this.state.companyName} Submitted`);
+
+    const options = {
+      method: 'GET',
+      // headers: {
+      //   Accept: 'application/json',
+      //   'Content-Type': 'application/x-www-form-urlencoded',
+      //   mode: 'cors',
+      //   'Access-Control-Allow-Origin': '*',
+      // },
+    };
+
+    fetch('http://dev.markitondemand.com/MODApis/Api/v2/Lookup?input=apple', options)
+    .then(data => console.log(data))
+    .catch(err => console.warn(err));
   }
 
   render() {
