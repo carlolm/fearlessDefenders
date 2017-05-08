@@ -18,18 +18,18 @@ const client = new Twitter({
 
 
 // Send index.html to all requests
-var app = http.createServer(function (req, res) {
+const app = http.createServer((req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/html' });
   res.end(index);
 });
 
 // Socket.io server listens to our app
-var io = require('socket.io').listen(app);
+const io = require('socket.io').listen(app);
 
 // Send current time to all connected clients
-function sendTime() {
-  io.emit('time', { time: new Date().toJSON() });
-}
+// function sendTime () {
+//   io.emit('time', { time: new Date().toJSON() });
+// }
 
 // ----------------------------
 
@@ -42,7 +42,7 @@ stream.on('data', (event) => {
   console.log('-----', Date(event.timestamp_ms));
   if (event.place) console.log('==> PLACE: ', event.place.full_name);
   console.log(event && event.text);
-  io.emit('tweet', {created_at: event.created_at, text: event.text});
+  io.emit('tweet', { created_at: event.created_at, text: event.text });
 });
 
 stream.on('error', (error) => {
@@ -55,7 +55,7 @@ stream.on('error', (error) => {
 // setInterval(sendTime, 2000);
 
 // Emit welcome message on connection
-io.on('connection', function (socket) {
+io.on('connection', (socket) => {
   // Use socket to communicate with this particular client only, sending it it's own id
   socket.emit('welcome', { message: 'Welcome!', id: socket.id });
 

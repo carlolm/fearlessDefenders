@@ -19,6 +19,7 @@
     "bookshelf": "^0.10.3",
     "chart.js": "^2.5.0",
     "cookie-parser": "^1.4.3",
+    "cors": "^2.8.3",
     "express": "^4.15.2",
     "knex": "^0.13.0",
     "path": "^0.12.7",
@@ -26,6 +27,8 @@
     "react-dom": "^15.5.4",
     "react-tabs": "^0.8.3",
     "request": "^2.81.0",
+    "socket.io": "^1.7.4",
+    "socket.io-client": "^1.7.4",
     "twitter": "^1.7.0",
     "twitter-node-client": "0.0.6",
     "watson-developer-cloud": "^2.31.0"

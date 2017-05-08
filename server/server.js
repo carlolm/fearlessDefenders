@@ -2,17 +2,29 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const path = require('path');
+const cors = require('cors');
 
 const toneAnalyzer = require('./watson');
 const TwitterSearch = require('./api/twitter-search.js');
+const TwitterStream = require('./api/twitter-stream.js').twitterClient;
+
+const socket = require('socket.io');
 
 const app = express();
+
+// Needed for socket.io
+const http = require('http');
+
+const socketApp = http.createServer();
+const io = socket.listen(socketApp);
 
 app.use(express.static(path.join(__dirname, '../build')));
 
 app.use(cookieParser());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.text());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(cors());
 
 app.get('/api/watson', (req, res) => {
   const input = {
@@ -49,6 +61,35 @@ app.post('/api/tweets', TwitterSearch.getTweets);
  *                    }
  */
 
+app.post('/api/stream', (req, res) => {
+  console.log('** [POST: api/stream] ', req.body);
+
+  if (req.body.ticker !== '' && req.body.showStream) {
+    const params = {
+      track: req.body.ticker,
+    };
+
+    const stream = TwitterStream.stream('statuses/filter', params);
+    stream.on('data', (event) => {
+      const newEvent = {
+        timeStamp: event.created_at,
+        username: event.user.screen_name,
+        text: event.text,
+      };
+      
+      io.emit('tweet', newEvent);
+      console.log(newEvent);
+    });
+
+    stream.on('error', (error) => {
+      console.warn(error);
+    });
+
+    res.send({ message: 'Streaming started' });
+  } else {
+    res.send({ message: 'Streaming stopped' });
+  }
+});
 
 app.get('/:bad*', (req, res) => {
   res.status(404).send(`Resource not found '${req.params.bad}'`);
@@ -56,4 +97,8 @@ app.get('/:bad*', (req, res) => {
 
 app.listen(process.env.PORT || 3000, () => {
   console.warn('Backend server listening on port 3000!');
+});
+
+socketApp.listen(5000, () => {
+  console.warn('Socket IO server listening on port 5000!');
 });

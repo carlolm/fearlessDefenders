@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 import TickerSearch from './TickerSearch';
+import TweetStream from './TweetStream';
 
 class TweetTabs extends Component {
   constructor(props) {
@@ -27,6 +28,7 @@ class TweetTabs extends Component {
         </TabPanel>
         <TabPanel>
           <h3>Streaming Tweets</h3>
+          <TweetStream />
         </TabPanel>
         <TabPanel>
           <h3>Search for Company Ticker</h3>
