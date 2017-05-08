@@ -2,7 +2,7 @@ import React from 'react';
 
 import './css/Sidebar.css';
 
-const Sidebar = ({}) => (
+const Sidebar = () => (
   <div className="sidebar">
     <h2>Favorites</h2>
     <ul>

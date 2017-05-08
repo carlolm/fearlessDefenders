@@ -4,11 +4,17 @@ const bodyParser = require('body-parser');
 const path = require('path');
 // const cors = require('cors');
 
-const toneAnalyzer = require('./watson');
 const TwitterSearch = require('./api/twitter-search.js');
+<<<<<<< HEAD
 const TwitterStream = require('./api/twitter-stream.js').twitterClient;
 
 const socket = require('socket.io');
+=======
+const naturalLanguage = require('./watson');
+
+// mock for development only
+const text = require('../mock/tweetBlob');
+>>>>>>> Working on watson
 
 const app = express();
 
@@ -27,18 +33,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(cors());
 
 app.get('/api/watson', (req, res) => {
-  const input = {
-    utterances: [
-      { text: 'Basically think of $AAPL as a ~$32B SaaS business linked to a ~$200B hardware business with gross margins of ~38 percent ' },
-      { text: 'When @tim_cook was here one year ago today, $AAPL was at $93. "Hold it, don\'t trade it." -@JimCramer' },
-      { text: 'Hilarious that @jimcramer mentioned the @amazonfirephone in his interview with @tim_cook. #CNBC #MadMoney $AAPL' },
-    ],
-  };
-
-  toneAnalyzer.tone_chat(input, (err, tone) => {
-    if (err) { return console.warn(err); }
-    return res.send(tone);
-  });
+  naturalLanguage.getSentiment(text.text)
+    .then(response => res.send(response))
+    .catch(err => res.send(err));
 });
 
 app.post('/api/tweets', TwitterSearch.getTweets);

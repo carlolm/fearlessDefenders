@@ -1,12 +1,27 @@
-const watson = require('watson-developer-cloud');
+const NaturalLanguageUnderstandingV1 = require('watson-developer-cloud/natural-language-understanding/v1.js');
+
 const keys = require('../config');
 
-const toneAnalyzer = watson.tone_analyzer({
+const nlu = new NaturalLanguageUnderstandingV1({
   username: keys.watson.username,
   password: keys.watson.password,
-  version: 'v3',
-  version_date: '2016-05-19 ',
+  version_date: NaturalLanguageUnderstandingV1.VERSION_DATE_2017_02_27,
 });
 
 
-module.exports = toneAnalyzer;
+nlu.getSentiment = text => new Promise((resolve, reject) => {
+  const options = {
+    html: text, // Buffer or String
+    features: {
+      sentiment: {},
+    },
+    return_analyzed_text: true,
+  };
+
+  nlu.analyze(options, (err, response) => {
+    if (err) { reject(err); }
+    resolve(response);
+  });
+});
+
+module.exports = nlu;
