@@ -5,6 +5,8 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import TickerSearch from './TickerSearch';
 import TweetStream from './TweetStream';
 
+import './css/TweetTabs.css';
+
 class TweetTabs extends Component {
   constructor(props) {
     super(props);
@@ -18,9 +20,9 @@ class TweetTabs extends Component {
     return (
       <Tabs>
         <TabList>
-          <Tab>Watson Analyzed</Tab>
-          <Tab>Live Tweets</Tab>
-          <Tab>Ticker Search</Tab>
+          <Tab className="tab-text">Watson Analyzed</Tab>
+          <Tab className="tab-text">Live Tweets</Tab>
+          <Tab className="tab-text">Ticker Search</Tab>
         </TabList>
 
         <TabPanel>

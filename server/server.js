@@ -2,7 +2,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const path = require('path');
-const cors = require('cors');
+// const cors = require('cors');
 
 const toneAnalyzer = require('./watson');
 const TwitterSearch = require('./api/twitter-search.js');
@@ -24,7 +24,7 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(cors());
+// app.use(cors());
 
 app.get('/api/watson', (req, res) => {
   const input = {
@@ -61,32 +61,42 @@ app.post('/api/tweets', TwitterSearch.getTweets);
  *                    }
  */
 
+
+// need to define single instance of streaming
+let stream;
+
 app.post('/api/stream', (req, res) => {
-  console.log('** [POST: api/stream] ', req.body);
 
-  if (req.body.ticker !== '' && req.body.showStream) {
-    const params = {
-      track: req.body.ticker,
-    };
+  if (stream) stream.destroy();
 
-    const stream = TwitterStream.stream('statuses/filter', params);
+  let showStream = req.body.showStream || false;
+
+  const params = {
+    track: req.body.ticker,
+  };
+  stream = TwitterStream.stream('statuses/filter', params);
+
+  if (req.body.ticker !== '' && showStream) {
     stream.on('data', (event) => {
       const newEvent = {
         timeStamp: event.created_at,
         username: event.user.screen_name,
         text: event.text,
       };
-      
+
       io.emit('tweet', newEvent);
       console.log(newEvent);
     });
 
     stream.on('error', (error) => {
+      stream.destroy();
+      console.log('*** STREAM DESTROYED ***');
       console.warn(error);
     });
 
     res.send({ message: 'Streaming started' });
   } else {
+    stream.destroy();
     res.send({ message: 'Streaming stopped' });
   }
 });
@@ -102,3 +112,4 @@ app.listen(process.env.PORT || 3000, () => {
 socketApp.listen(5000, () => {
   console.warn('Socket IO server listening on port 5000!');
 });
+ 

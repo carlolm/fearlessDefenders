@@ -1,6 +1,7 @@
 .tweets {
-  padding-left: 50px;
+  padding-left: 10px;
   flex: 2;
   background-color: #323232;
   color: #d7aaff;
+  width: 100%;
 }

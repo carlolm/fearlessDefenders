@@ -1,6 +1,7 @@
 .main {
   flex: 3;
   color: #562f72;
+  background-color: white;
 }
 
 .main h2 {

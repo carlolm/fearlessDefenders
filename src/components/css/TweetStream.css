@@ -1,0 +1,35 @@
+.table-header {
+  display: inline-block;
+  width: 100%;
+  background: white;
+  margin: 0px;
+}
+
+.label {
+  font-weight: bold;
+  color: purple;
+  width: 33%;
+}
+
+.ticker {
+  font-size: 0.8rem;
+  width: 33%;
+  font-weight: bold;
+  color: gray;
+}
+
+.button {
+  display: inline-block;
+  color: #181818;
+  border-radius: 5px;
+  background-color: #d7aaff;
+  padding: 5px;
+  width: auto;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.button:hover {
+  background-color: gray;
+  color: #d7aaff;
+}
