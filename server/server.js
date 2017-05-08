@@ -9,8 +9,8 @@ const TwitterSearch = require('./api/twitter-search.js');
 const TwitterStream = require('./api/twitter-stream.js').twitterClient;
 
 const socket = require('socket.io')({
-  "transports": ["xhr-polling"],
-  "polling duration": 10,
+  'transports': ['xhr-polling'],
+  'polling duration': 10,
 });
 
 const naturalLanguage = require('./watson');

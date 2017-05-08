@@ -6,7 +6,7 @@ import './css/TweetStream.css';
 // const socketURL = process.env.ROOT_URL || 'http://localhost';
 // console.log('*** socketURL ***', socketURL);
 
-const socket = io(`${window.location.hostname}:3000`);
+const socket = io(window.location.hostname);
 
 class TweetStream extends Component {
   constructor(props) {
