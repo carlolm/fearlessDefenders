@@ -9,4 +9,5 @@ module.exports = {
     access_token_key: 'TWITTER_ACCESS_KEY',
     access_token_secret: 'TWITTER_ACCESS_SECRET',
   },
+  databaseUrl: process.env.DATABASE_URL,
 };

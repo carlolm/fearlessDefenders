@@ -12,4 +12,5 @@ module.exports = {
     access_token_secret: process.env.TW_ACCESS_TOKEN_SECRET,
   },
   url: process.env.ROOT_URL,
+  databaseUrl: process.env.DATABASE_URL,
 };
