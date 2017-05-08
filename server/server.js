@@ -44,9 +44,9 @@ const io = socket.listen(server);
 // Heroku won't actually allow us to use WebSockets
 // so we have to setup polling instead.
 // https://devcenter.heroku.com/articles/using-socket-io-with-node-js-on-heroku
-// io.configure(function () {  
-// io.set("transports", ["xhr-polling"]); 
-// io.set("polling duration", 10); 
+// io.configure(function () {
+// io.set("transports", ["xhr-polling"]);
+// io.set("polling duration", 10);
 // });
 
 app.post('/api/tweets', TwitterSearch.getTweets);
@@ -74,7 +74,9 @@ app.post('/api/tweets', TwitterSearch.getTweets);
 let stream;
 
 app.post('/api/stream', (req, res) => {
+  
   console.log('[server] api/stream - STREAMING REQUEST', req.body.ticker);
+
   if (stream) stream.destroy();
 
   const showStream = req.body.showStream || false;
