@@ -31,7 +31,7 @@ class TickerSearch extends Component {
       // },
     };
 
-    fetch('http://dev.markitondemand.com/MODApis/Api/v2/Lookup?input=apple', options)
+    fetch('http://d.yimg.com/aq/autoc?query=apple&region=US&lang=en-US', options)
     .then(data => console.log(data))
     .catch(err => console.warn(err));
   }
