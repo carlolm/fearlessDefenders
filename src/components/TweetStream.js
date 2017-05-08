@@ -3,14 +3,15 @@ import io from 'socket.io-client';
 import TweetStreamEntry from './TweetStreamEntry';
 import './css/TweetStream.css';
 
+const socketURL = process.env.ROOT_URL || 'http://localhost';
 
-const socket = io('http://localhost:5000');
+const socket = io(`${socketURL}:5000`);
 
 class TweetStream extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ticker: '#trump',
+      ticker: '$GOOG',
       showStream: true,
       tweetStream: [],
     };

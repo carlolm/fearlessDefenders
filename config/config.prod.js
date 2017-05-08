@@ -11,4 +11,5 @@ module.exports = {
     access_token_key: process.env.TW_ACCESS_TOKEN,
     access_token_secret: process.env.TW_ACCESS_TOKEN_SECRET,
   },
+  url: process.env.ROOT_URL,
 };
