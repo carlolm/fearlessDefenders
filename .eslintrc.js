@@ -7,7 +7,7 @@ module.exports = {
     ],
     rules: {
       "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-      "no-console": [1, { "allow": ["warn", "error"]}],
+      "no-console": [0, { "allow": ["warn", "error"]}],
       "react/forbid-prop-types": [0]
     },
     "env": {

@@ -5,20 +5,12 @@ const path = require('path');
 // const cors = require('cors');
 
 const TwitterSearch = require('./api/twitter-search.js');
-<<<<<<< HEAD
 const TwitterStream = require('./api/twitter-stream.js').twitterClient;
 
 const socket = require('socket.io');
-=======
+
 const naturalLanguage = require('./watson');
 
-<<<<<<< HEAD
-// mock for development only
-const text = require('../mock/tweetBlob');
->>>>>>> Working on watson
-
-=======
->>>>>>> ready to connect db and test
 const app = express();
 
 // Needed for socket.io
@@ -67,10 +59,9 @@ app.post('/api/tweets', TwitterSearch.getTweets);
 let stream;
 
 app.post('/api/stream', (req, res) => {
-
   if (stream) stream.destroy();
 
-  let showStream = req.body.showStream || false;
+  const showStream = req.body.showStream || false;
 
   const params = {
     track: req.body.ticker,
