@@ -169,6 +169,7 @@ const getTweets = (req, res) => {
     if (tweetSet.length > 0) {
       tweetSet = tweetSet.slice(0, maxTweets);
       res.send({
+        symbol: query,
         first: tweetSet[tweetSet.length - 1].created_at,
         last: tweetSet[0].created_at,
         tweetCount: tweetSet.length,
