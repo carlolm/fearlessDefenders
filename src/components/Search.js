@@ -21,14 +21,11 @@ class Search extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-<<<<<<< HEAD
-    console.log(`${this.state.searchValue} Submitted`);
-=======
+
     const { fetchData } = this.props;
     const { searchValue } = this.state;
     fetchData(searchValue);
     console.log(searchValue + ' Submitted')
->>>>>>> Working on watson
   }
 
   render() {
