@@ -12,10 +12,13 @@ const socket = require('socket.io');
 =======
 const naturalLanguage = require('./watson');
 
+<<<<<<< HEAD
 // mock for development only
 const text = require('../mock/tweetBlob');
 >>>>>>> Working on watson
 
+=======
+>>>>>>> ready to connect db and test
 const app = express();
 
 // Needed for socket.io
@@ -32,8 +35,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // app.use(cors());
 
-app.get('/api/watson', (req, res) => {
-  naturalLanguage.getSentiment(text.text)
+app.post('/api/watson', (req, res) => {
+  const { text } = req.body;
+  naturalLanguage.getSentiment(text)
     .then(response => res.send(response))
     .catch(err => res.send(err));
 });

@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-module.exports = {
+module.exports.tone = {
   "utterances_tone": [
     {
       "utterance_id": 0,
@@ -35,4 +35,15 @@ module.exports = {
       ]
     }
   ]
+}
+
+
+module.exports.sentiment = {
+  "sentiment": {
+    "document": {
+      "score": -0.854822,
+      "label": "negative"
+    }
+  },
+  "language": "en"
 }

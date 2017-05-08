@@ -6,7 +6,7 @@ import Main from './Main';
 import Tweets from './Tweets';
 import stockChart from './chart.js'
 
-import { getDates, fetchFromTwitter } from '../helpers';
+import { getDates, getSentiment } from '../helpers';
 
 import './css/App.css';
 
@@ -21,14 +21,9 @@ class App extends React.Component {
   }
 
   fetchData(symbol) {
-    debugger;
-    const dates = getDates(5);
-    Promise.all(dates.map(date => fetchFromTwitter(date, symbol)))
-      // .then(result => {
-      //   // do something
-      //   debugger;
-      // })
-      // .then(result => fetchFromWatson)
+    const dates = getDates(2);
+    Promise.all(dates.map(date => getSentiment(date, symbol)))
+      .then(res => { debugger; });
   }
 
   render() {
