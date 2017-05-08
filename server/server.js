@@ -3,6 +3,8 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const path = require('path');
 
+const request = require('request');
+
 const TwitterSearch = require('./api/twitter-search.js');
 const TwitterStream = require('./api/twitter-stream.js').twitterClient;
 
@@ -74,7 +76,7 @@ app.post('/api/tweets', TwitterSearch.getTweets);
 let stream;
 
 app.post('/api/stream', (req, res) => {
-  
+
   console.log('[server] api/stream - STREAMING REQUEST', req.body.ticker);
 
   if (stream) stream.destroy();
@@ -109,6 +111,16 @@ app.post('/api/stream', (req, res) => {
     stream.destroy();
     res.send({ message: 'Streaming stopped' });
   }
+});
+
+app.get('/quandl/:ticker', (req, res) => {
+  request('https://www.quandl.com/api/v3/datasets/WIKI/'+req.params.ticker+'.json?api_key=gxKmSwX855L3gFQvaiNL', function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      res.end(response.body);
+    } else {
+      console.log(error);
+    }
+  })
 });
 
 app.get('/:bad*', (req, res) => {

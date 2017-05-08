@@ -1,7 +1,5 @@
 import React from 'react';
 
-import '../Chart.js/Chart.js'
-
 // will install chartjs serverside
 // import '../Chart.js/Chart.js'
 
@@ -66,4 +64,3 @@ class stockChart extends React.Component {
 }
 
 export default stockChart
-
