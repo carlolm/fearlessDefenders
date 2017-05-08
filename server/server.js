@@ -8,7 +8,10 @@ const request = require('request');
 const TwitterSearch = require('./api/twitter-search.js');
 const TwitterStream = require('./api/twitter-stream.js').twitterClient;
 
-const socket = require('socket.io');
+const socket = require('socket.io')({
+  "transports": ["xhr-polling"],
+  "polling duration": 10,
+});
 
 const naturalLanguage = require('./watson');
 
@@ -46,10 +49,6 @@ const io = socket.listen(server);
 // Heroku won't actually allow us to use WebSockets
 // so we have to setup polling instead.
 // https://devcenter.heroku.com/articles/using-socket-io-with-node-js-on-heroku
-// io.configure(function () {
-// io.set("transports", ["xhr-polling"]);
-// io.set("polling duration", 10);
-// });
 
 app.post('/api/tweets', TwitterSearch.getTweets);
 /**
