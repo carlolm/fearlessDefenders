@@ -33,7 +33,7 @@
     "socket.io-client": "^1.7.4",
     "twitter": "^1.7.0",
     "twitter-node-client": "0.0.6",
-    "watson-developer-cloud": "^2.31.0",
+    "watson-developer-cloud": "^2.31.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
