@@ -1,13 +1,13 @@
 import React from 'react';
 
-import Chart from './Chart.js';
+import StockChart from './Chart';
 
 import './css/Main.css';
 
 const Main = ({ data, ticker }) => (
   <div className="main">
     <h2>Main</h2>
-    <Chart ticker={ticker} />
+    <StockChart ticker={ticker} />
   </div>
 );
 
