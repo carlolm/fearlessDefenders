@@ -39,7 +39,7 @@ class StockChart extends Component {
           data: {
             labels: labels,
             datasets: [{
-              label: 'stock value',
+              label: 'Stock Palue',
               data: data,
               backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',

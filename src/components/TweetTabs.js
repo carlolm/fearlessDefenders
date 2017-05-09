@@ -4,6 +4,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 import TickerSearch from './TickerSearch';
 import TweetStream from './TweetStream';
+import WatsonSummary from './WatsonSummary';
 
 import './css/TweetTabs.css';
 
@@ -27,6 +28,7 @@ class TweetTabs extends Component {
 
         <TabPanel>
           <h3>Watson Analyzed</h3>
+          <WatsonSummary />
         </TabPanel>
         <TabPanel>
           <h3>Streaming Tweets</h3>
