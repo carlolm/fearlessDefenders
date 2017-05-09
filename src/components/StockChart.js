@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ChartJS from 'chart.js';
 import $ from 'jquery';
-import './css/Chart.css';
+import './css/StockChart.css';
 
 class StockChart extends Component {
   constructor(props) {
