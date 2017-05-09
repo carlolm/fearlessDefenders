@@ -59,11 +59,11 @@ const get = () => {
     }
   });
 }
-const Chartes = () => (
+const Charts = () => (
   <div>
     <h1>Here is a chart</h1>
     <canvas onLoad={get()} width="200" height="200" id="myChart"></canvas> 
   </div>
 )
 
-export default Chartes
+export default Charts
