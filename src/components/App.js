@@ -22,9 +22,12 @@ class App extends React.Component {
   }
 
   fetchData(symbol) {
-    const dates = getDates(2);
+    const numberOfDays = 5;
+    const dates = getDates(numberOfDays);
+    debugger;
     Promise.all(dates.map(date => getSentiment(date, symbol)))
-      .then(res => { debugger; });
+      .then(data => this.setState(data))
+      .then(() => console.log('SUCCESS!!'));
   }
 
   changeTicker(ticker) {
@@ -32,7 +35,6 @@ class App extends React.Component {
   }
 
   render() {
-    // debugger;
     return (
       <div className="site-wrap">
         <div className="header">

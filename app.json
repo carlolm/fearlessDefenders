@@ -4,7 +4,7 @@
   "scripts": {
   },
   "env": {
-    "DATABASE_URL": {"required": "true"},
+    "MONGODB_URI": { "required": "true" },
     "NPM_CONFIG_PRODUCTION": { "required": "true" },
     "TW_ACCESS_TOKEN": { "required": "true" },
     "TW_ACCESS_TOKEN_SECRET": { "required": "true" },

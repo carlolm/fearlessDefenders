@@ -5,34 +5,46 @@ export const getDates = (numberOfDays) => {
   const result = [];
 
   for (let i = 0; i < numberOfDays; i += 1) {
-    const date = new Date(today - i);
-    const formatted = formatDate(date);
+    const date = today.setDate(today.getDate() - 1);
+    const formatted = formatDate(new Date(date));
     result.push(formatted);
   }
   return result;
 };
 
-export const saveToDatabase = (tweetBlob, sentiment) => {
-  const { symbol } = tweetBlob;
-  const score = sentiment.document.score;
-  const date = formatDate(tweetBlob.first);
+export const saveToDatabase = (tweetBlob, scoreBlob) => {
+  let { symbol } = tweetBlob;
+  symbol = symbol.slice(1);
+  const score = scoreBlob.sentiment.document.score;
+  const date = formatDate(new Date(tweetBlob.last));
 
   const body = { symbol, date, score };
-
-  const options = { method: 'POST', body: JSON.stringify(body) };
+  const headers = {
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+  };
+  const options = { method: 'POST', body: JSON.stringify(body), headers };
   return fetch('/api/db', options)
     .then(res => res.json());
 };
 
 export const fetchFromTwitter = (date, symbol) => {
   const body = { query: symbol, startDate: date, endDate: date };
-  const options = { method: 'POST', body: JSON.stringify(body) };
+  const headers = {
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+  };
+  const options = { method: 'POST', body: JSON.stringify(body), headers };
   return fetch('/api/tweets', options)
     .then(res => res.json());
 };
 
 export const fetchFromWatson = (tweetBlob) => {
-  const options = { method: 'POST', body: tweetBlob };
+  const headers = {
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+  };
+  const options = { method: 'POST', body: JSON.stringify(tweetBlob), headers };
   const watson = fetch('/api/watson', options)
     .then(res => res.json())
     .catch(err => console.warn(err));
@@ -44,12 +56,13 @@ export const fetchFromWatson = (tweetBlob) => {
 };
 
 export const getSentiment = (date, symbol) => {
-  const url = `/api/db?symbol=${symbol}`;
+  const symbol$ = `$${symbol}`;
+  const url = `/api/db?date=${date}&symbol=${symbol}`;
   return fetch(url)
   .then(res => res.json())
   .then((res) => {
     if (res.length) { throw res; }
-    return fetchFromTwitter(date, symbol);
+    return fetchFromTwitter(date, symbol$);
   })
   .then(tweetBlob => fetchFromWatson(tweetBlob))
   .catch((dbValue) => {
