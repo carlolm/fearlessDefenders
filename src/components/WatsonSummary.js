@@ -35,9 +35,7 @@ class WatsonSummary extends Component {
     // const min = Math.max(-100, Math.min.apply(null, data) - 10);
     const min = -100;
 
-    console.log('GENERATE CHART: ', labels, data, min);
-
-    const ctx = document.getElementById('bar-chart');
+    const ctx = document.getElementById('watson-chart');
     const barChart = new Chart(ctx, {
       type: 'horizontalBar',
       data: {
@@ -68,31 +66,29 @@ class WatsonSummary extends Component {
             ticks: {
               min: -100, // Edit the value according to what you need
               max: 100,
-            }
+            },
           }],
           yAxes: [{
-            stacked: true
-          }]
+            stacked: true,
+          }],
         },
       },
     });
   }
 
   componentDidMount() {
-
-    console.log('*** WATSON SUMMARY DID MOUNT ***');
     this.generateChart();
-
   }
 
   render() {
     return (
       <div className="watson-bg">
-        <canvas width="50px" height="75px" id="bar-chart" />
+        <canvas width="50px" height="75px" id="watson-chart" />
         <div id="bar-chart"></div>
       </div>
     );
   }
+
 
 }
 
