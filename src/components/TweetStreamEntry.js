@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import './css/TweetStreamEntry.css';
 
 
@@ -16,11 +15,5 @@ const TweetStreamEntry = ({ username, timeStamp, text }) => (
     </tbody>
   </table>
 );
-
-TweetStreamEntry.propTypes = {
-  username: PropTypes.string,
-  timeStamp: PropTypes.string,
-  text : PropTypes.string,
-};
 
 export default TweetStreamEntry;

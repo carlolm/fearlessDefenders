@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
+import TickerSearchEntry from './TickerSearchEntry';
+import './css/TickerSearch.css';
 
 class TickerSearch extends Component {
   constructor(props) {
     super(props);
     this.state = {
       companyName: '',
-      searchResults: [],
+      searchResults: {
+        ticker: '',
+        securities: [],
+      },
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -22,34 +27,53 @@ class TickerSearch extends Component {
     console.log(`${this.state.companyName} Submitted`);
 
     const options = {
-      method: 'GET',
+      method: 'POST',
       headers: {
         Accept: 'application/json',
-        'Content-Type': 'application/x-www-form-urlencoded',
-        mode: 'cors',
-        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
       },
+      body: JSON.stringify({ company: this.state.companyName }),
     };
 
-    fetch(`http://d.yimg.com/aq/autoc?query=${this.state.companyName}&region=US&lang=en-US`, options)
-    .then(data => console.log(data))
-    .catch(err => console.warn(err));
+    fetch('/company/search', options)
+      .then(data => data.json())
+      .then(results => {
+        console.log(results);
+        this.setState({ searchResults: results });
+      })
+      .catch(err => console.warn(err));
   }
 
   render() {
     return (
       <div>
-        <table>
+        <table className="table-header">
           <tbody>
             <tr>
               <td><input
-                type="text" onChange={this.handleChange}
+                type="text" className="text-input" onChange={this.handleChange}
                 placeholder="Enter company name" value={this.state.companyName}
               /></td>
-              <td><button onClick={this.handleSubmit}>Search</button></td>
+              <td><button className="button" onClick={this.handleSubmit}>Search</button></td>
             </tr>
+            {(this.state.searchResults.ticker !== '') ?
+              <tr>
+                <td className="label">Results: </td>
+                <td className="ticker">{this.state.searchResults.ticker}</td>
+              </tr>
+              : null}
           </tbody>
         </table>
+
+        {this.state.searchResults.securities.map((security, index) => (
+          <TickerSearchEntry
+            key={index}
+            symbol={security.symbol}
+            name={security.name}
+            exchange={security.exchange}
+          />
+        ))}
+
       </div>
     );
   }

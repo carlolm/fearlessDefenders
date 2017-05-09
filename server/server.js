@@ -63,6 +63,7 @@ app.post('/api/tweets', TwitterSearch.getTweets);
  *                                    Default value: 1000
  *
  * @return {object}   {
+ *                      symbol: query of search (ticker)
  *                      first: [date/time of least recent tweet],
  *                      last: [date/time of most recent tweet],
  *                      tweetCount: [number of tweets received],
@@ -113,13 +114,42 @@ app.post('/api/stream', (req, res) => {
 });
 
 app.get('/quandl/:ticker', (req, res) => {
-  request('https://www.quandl.com/api/v3/datasets/WIKI/'+req.params.ticker+'.json?api_key=gxKmSwX855L3gFQvaiNL', function (error, response, body) {
+  request('https://www.quandl.com/api/v3/datasets/WIKI/' + req.params.ticker + '.json?api_key=gxKmSwX855L3gFQvaiNL', function (error, response, body) {
     if (!error && response.statusCode == 200) {
       res.end(response.body);
     } else {
       console.log(error);
     }
-  })
+  });
+});
+
+app.post('/company/search', (req, res) => {
+  console.log('[server] /company/search: ', req.body);
+  request(`http://d.yimg.com/aq/autoc?query=${req.body.company}&region=US&lang=en-US`, (err, response, body) => {
+    if (!err && response.statusCode === 200) {
+      const newBody = JSON.parse(body);
+
+      const result = {
+        ticker: newBody.ResultSet.Query,
+        securities: [],
+      };
+
+      newBody.ResultSet.Result.forEach((object) => {
+        if (object.typeDisp === 'Equity') {
+          const newObj = {
+            symbol: object.symbol,
+            name: object.name,
+            exchange: object.exchDisp,
+          };
+          result.securities.push(newObj);
+        }
+      });
+
+      res.send(JSON.stringify(result));
+    } else {
+      res.send({ error: err });
+    }
+  });
 });
 
 app.get('/:bad*', (req, res) => {

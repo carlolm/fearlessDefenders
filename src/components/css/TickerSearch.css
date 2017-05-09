@@ -1,14 +1,9 @@
 .table-header {
   display: inline-block;
   width: 95%;
-  background: white;
-  margin: 0px;
-}
-
-.label {
-  font-weight: bold;
-  color: purple;
-  width: 33%;
+  background: gray;
+  margin: 5px 0px;
+  padding: 5px;
 }
 
 .text-input {
@@ -17,6 +12,11 @@
   margin: 5px 0px;
 }
 
+.label {
+  font-weight: bold;
+  color: purple;
+  width: 33%;
+}
 
 .ticker {
   font-size: 0.8rem;

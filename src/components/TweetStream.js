@@ -3,14 +3,7 @@ import io from 'socket.io-client';
 import TweetStreamEntry from './TweetStreamEntry';
 import './css/TweetStream.css';
 
-// const socketURL = process.env.ROOT_URL || 'http://localhost';
-// console.log('*** socketURL ***', socketURL);
-
-console.log(' HOSTNAME: ', window.location.hostname, window.location.hostname.indexOf('local'));
-
 const socketURL = (window.location.hostname.indexOf('local') !== -1) ? `${window.location.hostname}:3000` : window.location.hostname;
-
-console.log(socketURL);
 
 const socket = io(socketURL);
 
@@ -47,6 +40,11 @@ class TweetStream extends Component {
   handleClick(e) {
     e.preventDefault();
     this.setState({ showStream: !this.state.showStream });
+
+    if (this.state.showStream === true) {
+      this.setState({ tweetStream: [] });
+    }
+
     const body = {
       ticker: this.state.ticker,
       showStream: this.state.showStream,
@@ -75,14 +73,11 @@ class TweetStream extends Component {
         <table className="table-header">
           <tbody>
             <tr>
-              <td className="label">
-                Current:
-              </td>
               <td className="ticker">
-                <input type="text" value={this.state.ticker} onChange={this.handleChange} />
+                <input className="text-input" type="text" value={this.state.ticker} onChange={this.handleChange} />
               </td>
               <td>
-                <div className="button" onClick={this.handleClick}>{(this.state.showStream) ? 'Live Stream' : 'Pause Stream'}</div>
+                <button className="button" onClick={this.handleClick}>{(this.state.showStream) ? 'Live Stream' : 'Pause Stream'}</button>
               </td>
             </tr>
           </tbody>
