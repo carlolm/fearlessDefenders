@@ -30,6 +30,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // const cors = require('cors');
 // app.use(cors());
 
+app.get('/api/quandl/:ticker', (req, res) => {
+  request('https://www.quandl.com/api/v3/datasets/WIKI/'+req.params.ticker+'.json?api_key=gxKmSwX855L3gFQvaiNL', function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      res.end(response.body);
+    } else {
+      console.log(error);
+    }
+  })
+});
+
 app.post('/api/watson', (req, res) => {
   const { text } = req.body;
   naturalLanguage.getSentiment(text)

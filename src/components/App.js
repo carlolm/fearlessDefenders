@@ -4,7 +4,7 @@ import Search from './Search';
 import Sidebar from './Sidebar';
 import Main from './Main';
 import Tweets from './Tweets';
-import stockChart from './chart.js'
+import Chartes from './chart.js';
 
 import { getDates, getSentiment } from '../helpers';
 
@@ -41,6 +41,7 @@ class App extends React.Component {
           <Main />
           <Tweets />
         </div>
+        <Chartes />
       </div>
     );
   }
