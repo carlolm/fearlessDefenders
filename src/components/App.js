@@ -24,7 +24,7 @@ class App extends React.Component {
   fetchData(symbol) {
     const numberOfDays = 5;
     const dates = getDates(numberOfDays);
-    debugger;
+
     Promise.all(dates.map(date => getSentiment(date, symbol)))
       .then(data => this.setState(data))
       .then(() => console.log('SUCCESS!!'));
@@ -41,7 +41,7 @@ class App extends React.Component {
           <h1>Hack Trader</h1>
         </div>
         <div className="nav">
-          <Search fetchData={this.fetchData} changeTicker={this.changeTicker}/>
+          <Search fetchData={this.fetchData} changeTicker={this.changeTicker} />
         </div>
         <div className="content">
           <Sidebar />

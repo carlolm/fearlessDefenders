@@ -23,7 +23,7 @@ const app = express();
 app.use(express.static(path.join(__dirname, '../build')));
 
 app.use(cookieParser());
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // const cors = require('cors');
@@ -52,7 +52,7 @@ app.get('/api/db', (req, res) => {
     Scores.find({ date, symbol })
       .then(scores => res.send(scores));
   } else {
-    Scores.find({})
+    Scores.find({ symbol })
       .then(scores => res.send(scores));
   }
 });
