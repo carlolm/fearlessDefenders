@@ -24,8 +24,6 @@ class StockChart extends Component {
       type: 'GET',
       url: `/api/quandl/${ticker}`,
       success: (result) => {
-        console.log(typeof (result));
-        console.log(result);
         result = JSON.parse(result);
         const labels = [];
         const data = [];
@@ -72,7 +70,7 @@ class StockChart extends Component {
         });
       },
       error: (error) => {
-        console.log(error);
+        console.warn('[StockChart.js error] ', error);
       },
     });
   }
