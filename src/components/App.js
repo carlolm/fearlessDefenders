@@ -4,7 +4,6 @@ import Search from './Search';
 import Sidebar from './Sidebar';
 import Main from './Main';
 import Tweets from './Tweets';
-import Charts from './chart.js';
 
 import { getDates, getSentiment } from '../helpers';
 
@@ -15,15 +14,21 @@ class App extends React.Component {
     super(props);
     this.state = {
       data: {},
+      ticker: 'AAPL',
     };
 
     this.fetchData = this.fetchData.bind(this);
+    this.changeTicker = this.changeTicker.bind(this);
   }
 
   fetchData(symbol) {
     const dates = getDates(2);
     Promise.all(dates.map(date => getSentiment(date, symbol)))
       .then(res => { debugger; });
+  }
+
+  changeTicker(ticker) {
+    this.setState({ ticker });
   }
 
   render() {
@@ -34,14 +39,13 @@ class App extends React.Component {
           <h1>Hack Trader</h1>
         </div>
         <div className="nav">
-          <Search fetchData={this.fetchData} />
+          <Search fetchData={this.fetchData} changeTicker={this.changeTicker}/>
         </div>
         <div className="content">
           <Sidebar />
-          <Main />
+          <Main ticker={this.state.ticker} />
           <Tweets />
         </div>
-        <Charts />
       </div>
     );
   }

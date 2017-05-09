@@ -14,9 +14,11 @@ class Search extends React.Component {
   }
 
   handleChange(e) {
+    e.preventDefault();
     let searchValue = e.target.value;
     searchValue = searchValue.toUpperCase();
     this.setState({ searchValue });
+    this.props.changeTicker(searchValue);
   }
 
   handleSubmit(e) {

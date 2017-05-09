@@ -1,0 +1,19 @@
+.chart-container {
+  margin: 20px auto;
+}
+
+.button {
+  display: inline-block;
+  background-color: lightgray;
+  color: #181818;
+  border-radius: 5px;
+  padding: 5px;
+  width: auto;
+  font-size: 0.8rem;
+  text-align: center;
+  margin: 20px auto;
+}
+
+.center {
+  margin: 10px auto;
+}
