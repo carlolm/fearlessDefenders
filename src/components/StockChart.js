@@ -3,7 +3,7 @@ import ChartJS from 'chart.js';
 import $ from 'jquery';
 import './css/Chart.css';
 
-class Chart extends Component {
+class StockChart extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,7 +17,7 @@ class Chart extends Component {
   updateChart() {
     this.createChart(this.props.ticker);
     this.setState({ ticker: this.props.ticker });
-  };   
+  }   
 
   createChart(ticker) {
     $.ajax({
@@ -94,4 +94,4 @@ class Chart extends Component {
   }
 }
 
-export default Chart;
+export default StockChart;
