@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import Chart from 'chart.js';
+import ChartJS from 'chart.js';
 import $ from 'jquery';
 import './css/Chart.css';
 
-
-
-class StockChart extends Component {
+class Chart extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -36,7 +34,7 @@ class StockChart extends Component {
           data.unshift(result.dataset.data[i][4]);
         }
         const ctx = document.getElementById('myChart');
-        const myChart = new Chart(ctx, {
+        const myChart = new ChartJS(ctx, {
           type: 'line',
           data: {
             labels: labels,
@@ -97,4 +95,4 @@ class StockChart extends Component {
 }
 
 
-export default StockChart;
+export default Chart;
