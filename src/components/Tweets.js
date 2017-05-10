@@ -5,10 +5,10 @@ import './css/Tweets.css';
 import TweetTabs from './TweetTabs.js';
 
 
-const Tweets = () => (
+const Tweets = ({ companiesSummary }) => (
   <div className="tweets">
     <h2>Tweets</h2>
-    <TweetTabs />
+    <TweetTabs companiesSummary={companiesSummary} />
   </div>
 );
 

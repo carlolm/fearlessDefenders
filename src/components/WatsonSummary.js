@@ -7,33 +7,24 @@ import './css/WatsonSummary.css';
 class WatsonSummary extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      watsonData: [
-        ['stock1', 99],
-        ['stock2', 80],
-        ['stock3', 75],
-        ['stock4', 50],
-        ['stock5', -50],
-      ],
-    };
     this.generateChart = this.generateChart.bind(this);
   }
 
   generateChart() {
-    let watsonData = [];
 
-    for (let i = 0; i < 5; i++) {
-      watsonData.push([`stock${i}`, (Math.random() * 2) - 1]);
-    }
+    const labels = this.props.companiesSummary.map(tuple => tuple[0]);
+    const data = this.props.companiesSummary.map(tuple => tuple[2] * 100);
 
-    watsonData = watsonData.sort((a, b) => b[1] - a[1]);
+    let axisMax = Math.max(Math.max.apply(null, data), -Math.min.apply(null, data));
+    axisMax = Math.min(100, Math.ceil(axisMax / 100 * 4) * 25);
 
-    this.setState({ watsonData });
-
-    const labels = watsonData.map(tuple => tuple[0]);
-    const data = watsonData.map(tuple => tuple[1] * 100);
-    // const min = Math.max(-100, Math.min.apply(null, data) - 10);
-    const min = -100;
+    const colors = data.map((score) => {
+      if (score >= 0) {
+        return `rgba(75, 192, 192, ${Math.max(score/axisMax, 0.25)})`
+      } else {
+        return `rgba(255, 99, 132, ${Math.max(-score/axisMax, 0.25)})`
+      }
+    });
 
     const ctx = document.getElementById('watson-chart');
     const barChart = new Chart(ctx, {
@@ -43,20 +34,8 @@ class WatsonSummary extends Component {
         datasets: [{
           label: 'Watson Score',
           data: data,
-          backgroundColor: [
-            'rgba(75, 192, 192, 0.5)',
-            'rgba(54, 162, 235, 0.5)',
-            'rgba(255, 206, 86, 0.5)',
-            'rgba(153, 102, 255, 0.5)',
-            'rgba(255, 99, 132, 0.5)',
-          ],
-          borderColor: [
-            'rgba(75, 192, 192, 0.5)',
-            'rgba(54, 162, 235, 0.5)',
-            'rgba(255, 206, 86, 0.5)',
-            'rgba(153, 102, 255, 0.5)',
-            'rgba(255, 99, 132, 0.5)',
-          ],
+          backgroundColor: colors,
+          borderColor: colors,
           borderWidth: 1,
         }],
       },
@@ -64,8 +43,8 @@ class WatsonSummary extends Component {
         scales: {
           xAxes: [{
             ticks: {
-              min: -100, // Edit the value according to what you need
-              max: 100,
+              min: -axisMax, // Edit the value according to what you need
+              max: axisMax,
             },
           }],
           yAxes: [{
@@ -80,11 +59,14 @@ class WatsonSummary extends Component {
     this.generateChart();
   }
 
+  componentDidUpdate() {
+    this.generateChart();
+  }
+
   render() {
     return (
       <div className="watson-bg">
-        <canvas width="50px" height="75px" id="watson-chart" />
-        <div id="bar-chart"></div>
+        <canvas width="50px" onLoad={this.generateChart} height="75px" id="watson-chart" />
       </div>
     );
   }
