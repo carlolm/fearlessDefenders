@@ -7,6 +7,9 @@ import './css/WatsonSummary.css';
 class WatsonSummary extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      watsonChart: 'watsonChart',
+    };
     this.generateChart = this.generateChart.bind(this);
   }
 
@@ -66,7 +69,7 @@ class WatsonSummary extends Component {
   render() {
     return (
       <div className="watson-bg">
-        <canvas width="50px" onLoad={this.generateChart} height="75px" id="watson-chart" />
+        <canvas width="50px" onLoad={this.generateChart} height="100px" id="watson-chart" />
       </div>
     );
   }

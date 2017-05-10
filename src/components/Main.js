@@ -4,7 +4,7 @@ import StockChart from './StockChart';
 
 import './css/Main.css';
 
-const Main = ({ data, ticker }) => (
+const Main = ({ ticker }) => (
   <div className="main">
     <h2>Main</h2>
     <StockChart ticker={ticker} />
