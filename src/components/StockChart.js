@@ -8,19 +8,27 @@ class StockChart extends Component {
     super(props);
     this.state = {
       ticker: 'none',
-      myChart: 'a'
+      myChart: 'a',
     };
 
     this.createChart = this.createChart.bind(this);
     this.updateChart = this.updateChart.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   updateChart() {
     this.createChart(this.props.ticker);
-    this.setState({ ticker: this.props.ticker });
   }   
 
-  createChart(ticker) {
+  handleClick() {
+    this.updateChart();
+  }   
+
+  createChart() {
+    const ticker = this.props.ticker;
+    
+    console.log('** STOCK CHART - createChart: ', ticker);
+    
     $.ajax({
       type: 'GET',
       url: `/api/quandl/${ticker}`,
@@ -107,7 +115,6 @@ class StockChart extends Component {
           }
         })
         });
-        console.log('Here it is: ', this.state.myChart);
       },
       error: (error) => {
         console.log('ERROR CREATING CHART');
@@ -118,14 +125,15 @@ class StockChart extends Component {
 
   componentDidMount() {
     console.log('** StockChart DID MOUNT **');
-    // this.setState({ ticker: this.props.ticker }, () => this.createChart(this.props.ticker));
+    this.updateChart();
   }
-
+ 
   render() {
     return (
       <div className="chart-container">
         <h2>{this.props.ticker} Stock Price</h2>
-        <canvas onLoad={this.createChart(this.props.ticker)} className="center" width="200" height="200" id="stock-chart" />
+        <canvas onLoad={this.createChart} className="center" height="300px" id="stock-chart" />
+        <button onClick={this.handleClick}>Update Chart</button>
       </div>
     );
   }

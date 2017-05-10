@@ -66,6 +66,35 @@ class TweetStream extends Component {
       .then(data => console.log(data))
       .catch(err => console.warn(err));
   }
+ 
+  componentDidUnmount() {
+    this.setState({ showStream: false });
+
+    if (this.state.showStream === true) {
+      this.setState({ tweetStream: [] });
+    }
+
+    const body = {
+      ticker: this.state.ticker,
+      showStream: this.state.showStream,
+    };
+
+    const options = {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    };
+
+    console.log(options);
+
+    fetch('/api/stream', options)
+      .then(data => data.json())
+      .then(data => console.log(data))
+      .catch(err => console.warn(err));
+  }
 
   render() {
     return (
