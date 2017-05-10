@@ -26,32 +26,32 @@ class App extends React.Component {
   fetchData(symbol) {
     const numberOfDays = 5;
     const dates = getDates(numberOfDays);
-    debugger;
 
     Promise.all(dates.map(date => getSentiment(date, symbol)))
       .then(data => this.setState({ data }))
       .then(() => {
-        this.fetchCompaniesSummary();
+        this.fetchCompaniesSummary(symbol);
         console.log('SUCCESS!!');
       });
   }
 
-  fetchCompaniesSummary() {
+  fetchCompaniesSummary(symbol) {
 
     Promise.resolve(getCompanySummary())
       .then((companiesSummary) => {
-        (companiesSummary.length > 0) ? this.setState({ companiesSummary }) : null;
+        (companiesSummary.length > 0) ? this.setState({ companiesSummary, ticker: symbol }) : null;
       })
+      // .then(() => this.setState({ ticker: symbol }))
     .catch(err => console.warn({error: `fetchCompaniesSummary error: ${err}`}));
 
   }
 
   changeTicker(ticker) {
-    this.setState({ ticker });
+    // this.setState({ ticker });
   }
 
   componentWillMount() {
-    this.fetchCompaniesSummary();
+    this.fetchCompaniesSummary('AAPL');  // Initialize with a value
   }
 
   render() {

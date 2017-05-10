@@ -7,12 +7,7 @@ class StockChart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ticker: 'AAPL',
-
-      /********************/
-      // adds myChart to state
-      /********************/
-
+      ticker: 'none',
       myChart: 'a'
     };
 
@@ -56,7 +51,7 @@ class StockChart extends Component {
             datasets: [
               {
                 type: 'bar',
-                label: 'Bar Component',
+                label: 'Watson Score',
                 data: [20, -20, -10, 50, 60],
                 backgroundColor: [
                   'rgba(0, 99, 132, 0.2)',
@@ -78,7 +73,7 @@ class StockChart extends Component {
               },
               {
               type: 'line',
-              label: 'stock value',
+              label: 'Stock Price',
               data: quandlData,
               // backgroundColor: [
               //   'rgba(255, 99, 132, 0.2)',
@@ -122,17 +117,15 @@ class StockChart extends Component {
   }
 
   componentDidMount() {
-    this.createChart(this.state.ticker);
+    console.log('** StockChart DID MOUNT **');
+    // this.setState({ ticker: this.props.ticker }, () => this.createChart(this.props.ticker));
   }
 
   render() {
     return (
       <div className="chart-container">
-        <h2>{this.state.ticker} Stock Price</h2>
-        <canvas className="center" width="200" height="200" id="stock-chart" />
-        <p className="center">
-          <button className="button" onClick={this.updateChart}>Update chart</button>
-        </p>
+        <h2>{this.props.ticker} Stock Price</h2>
+        <canvas onLoad={this.createChart(this.props.ticker)} className="center" width="200" height="200" id="stock-chart" />
       </div>
     );
   }
