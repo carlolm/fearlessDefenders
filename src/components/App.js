@@ -29,7 +29,10 @@ class App extends React.Component {
 
     Promise.all(dates.map(date => getSentiment(date, symbol)))
       .then(data => this.setState(data))
-      .then(() => console.log('SUCCESS!!'));
+      .then(() => {
+        this.fetchCompaniesSummary();
+        console.log('SUCCESS!!');
+      });
   }
 
   fetchCompaniesSummary() {
