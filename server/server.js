@@ -57,6 +57,28 @@ app.get('/api/db', (req, res) => {
   }
 });
 
+app.get('/api/db/scores', (req, res) => {
+  Scores.find({})
+    .then(allScores => {
+      let scores = allScores.map(x => {
+        return { date: new Date(x.date), symbol: x.symbol, score: x.score };
+      });
+      scores = scores.sort((a, b) => b.date - a.date);
+      const companies = {};
+      let results = [];
+      scores.forEach(x => {
+        if (!companies.hasOwnProperty(x.symbol)) {
+          companies[x.symbol] = x.symbol;
+          results.push([x.symbol, x.date, x.score]);
+        }
+      });
+      results = results.sort((a, b) => b[2] - a[2]);
+      console.log(results);
+      res.send(JSON.stringify(results));
+    })
+    .catch((err) => res.send({error: `[api/db/all] error retrieving: ${err}`}));
+});
+
 app.post('/api/db', (req, res) => {
   const { date, score, symbol } = req.body;
   const newScore = new Scores({ date, score, symbol });
