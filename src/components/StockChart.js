@@ -20,6 +20,7 @@ class StockChart extends Component {
   }   
 
   createChart(ticker) {
+
     $.ajax({
       type: 'GET',
       url: `/api/quandl/${ticker}`,
@@ -31,7 +32,8 @@ class StockChart extends Component {
           labels.unshift(result.dataset.data[i][0]);
           data.unshift(result.dataset.data[i][4]);
         }
-        const ctx = document.getElementById('myChart');
+
+        const ctx = document.getElementById('stock-chart');
         const myChart = new ChartJS(ctx, {
           type: 'line',
           data: {
@@ -70,6 +72,7 @@ class StockChart extends Component {
         });
       },
       error: (error) => {
+        console.log('ERROR CREATING CHART');
         console.warn('[StockChart.js error] ', error);
       },
     });
@@ -83,7 +86,7 @@ class StockChart extends Component {
     return (
       <div className="chart-container">
         <h2>{this.state.ticker} Stock Price</h2>
-        <canvas className="center" width="200" height="200" id="myChart" />
+        <canvas className="center" width="200" height="200" id="stock-chart" />
         <p className="center">
           <button className="button" onClick={this.updateChart}>Update chart</button>
         </p>
