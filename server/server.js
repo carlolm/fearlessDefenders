@@ -49,8 +49,11 @@ app.post('/api/watson', (req, res) => {
 app.get('/api/db', (req, res) => {
   const { date, symbol } = req.query;
   if (date) {
-    Scores.find({ date, symbol })
-      .then(scores => res.send(scores));
+    Scores.findOne({ date, symbol })
+      .then((scores) => {
+        const result = scores || [];
+        res.send(result);
+      });
   } else {
     Scores.find({ symbol })
       .then(scores => res.send(scores));

@@ -12,6 +12,7 @@ export const getDates = (numberOfDays) => {
   return result;
 };
 
+
 export const saveToDatabase = (tweetBlob, scoreBlob) => {
   let { symbol } = tweetBlob;
   symbol = symbol.slice(1);
@@ -28,6 +29,7 @@ export const saveToDatabase = (tweetBlob, scoreBlob) => {
     .then(res => res.json());
 };
 
+
 export const fetchFromTwitter = (date, symbol) => {
   const body = { query: symbol, startDate: date, endDate: date };
   const headers = {
@@ -38,6 +40,7 @@ export const fetchFromTwitter = (date, symbol) => {
   return fetch('/api/tweets', options)
     .then(res => res.json());
 };
+
 
 export const fetchFromWatson = (tweetBlob) => {
   const headers = {
@@ -55,19 +58,23 @@ export const fetchFromWatson = (tweetBlob) => {
     .then(([score, dbResolution]) => dbResolution); // eslint-disable-line
 };
 
+
 export const getSentiment = (date, symbol) => {
   const symbol$ = `$${symbol}`;
   const url = `/api/db?date=${date}&symbol=${symbol}`;
   return fetch(url)
   .then(res => res.json())
   .then((res) => {
-    if (res.length) { throw res; }
+    if (res.length) { throw ({ type: 'db', res }); }
     return fetchFromTwitter(date, symbol$);
   })
   .then(tweetBlob => fetchFromWatson(tweetBlob))
-  .catch((dbValue) => {
-    console.log('found in db');
-    return dbValue;
+  .catch((err) => {
+    if (err.type === 'db') {
+      console.log('found in db');
+      return err.res;
+    }
+    return err;
   });
 };
 
