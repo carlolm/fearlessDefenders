@@ -65,7 +65,7 @@ export const getSentiment = (date, symbol) => {
   return fetch(url)
   .then(res => res.json())
   .then((res) => {
-    if (res.length) { throw ({ type: 'db', res }); }
+    if (!Array.isArray(res)) { throw ({ type: 'db', res }); }
     return fetchFromTwitter(date, symbol$);
   })
   .then(tweetBlob => fetchFromWatson(tweetBlob))

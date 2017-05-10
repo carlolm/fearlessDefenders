@@ -43,7 +43,7 @@ app.post('/api/watson', (req, res) => {
   const { text } = req.body;
   naturalLanguage.getSentiment(text)
     .then(response => res.send(response))
-    .catch(err => res.send(err));
+    .catch(err => res.status(400).send(err));
 });
 
 app.get('/api/db', (req, res) => {
