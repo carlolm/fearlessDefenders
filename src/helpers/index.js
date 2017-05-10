@@ -70,3 +70,15 @@ export const getSentiment = (date, symbol) => {
     return dbValue;
   });
 };
+
+export const getCompanySummary = () => {
+  const url = '/api/db/allCompanies';
+  return fetch(url)
+    .then(res => res.json())
+    .then((data) => {
+      return data;
+    })
+    .catch((err) => {
+      return [];
+    });
+};

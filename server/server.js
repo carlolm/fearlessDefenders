@@ -57,7 +57,7 @@ app.get('/api/db', (req, res) => {
   }
 });
 
-app.get('/api/db/scores', (req, res) => {
+app.get('/api/db/allCompanies', (req, res) => {
   Scores.find({})
     .then(allScores => {
       let scores = allScores.map(x => {

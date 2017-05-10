@@ -28,7 +28,7 @@ class TweetTabs extends Component {
 
         <TabPanel>
           <h3>Watson Analyzed</h3>
-          <WatsonSummary />
+          <WatsonSummary companiesSummary={this.props.companiesSummary} />
         </TabPanel>
         <TabPanel>
           <h3>Streaming Tweets</h3>
