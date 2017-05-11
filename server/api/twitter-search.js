@@ -45,11 +45,11 @@ const promiseWhile = (condition, action) => {
 /**
  * Get an array of tweet objects
  * @function
- * @param {string} query - Query string (e.g. '$AAPL' for apple stock ticker)
- * @param {string} startDate - earliest date of tweets to retrieve 'yyyy-mm-dd'
- * @param {string} endDate - latest date of tweets to retrieve 'yyyy-mm-dd'
- *                           Note: up to and *excluding* this date
- *                           For current tweets, use current date + 1 day
+ * @param {string} query -      Query string (e.g. '$AAPL' for apple stock ticker)
+ * @param {string} startDate -  earliest date of tweets to retrieve 'yyyy-mm-dd'
+ * @param {string} endDate -    latest date of tweets to retrieve 'yyyy-mm-dd'
+ *                              Note: up to and *excluding* this date
+ *                              For current tweets, use current date + 1 day
  * @param {integer} maxTweets - max number of tweets to retrieve
  * @param {function} callback - function that takes in the resulting tweetSet as
  *                              a parameter
@@ -93,7 +93,7 @@ const getTweetSet = (query, startDate, endDate, maxTweets, callback) => {
       };
 
       console.log(params);
-      
+
       if (maxId !== null) params.max_id = maxId;
 
       // Callback function for error case for twitter.getSearch
@@ -124,6 +124,7 @@ const getTweetSet = (query, startDate, endDate, maxTweets, callback) => {
               text: tweet.text,
             }));
             tweetSet = tweetSet.concat(tweetsArray);
+            if (maxId === tweetsArray[tweetsArray.length - 1].id) endOfResults = true;
             maxId = tweetsArray[tweetsArray.length - 1].id;
             tweetCount += tweetsArray.length;
           }
