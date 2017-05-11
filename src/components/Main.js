@@ -11,12 +11,4 @@ const Main = ({ ticker, data }) => (
   </div>
 );
 
-Main.propTypes = {
-  data: React.PropTypes.object,
-};
-
-Main.defaultProps = {
-  data: [],
-};
-
 export default Main;

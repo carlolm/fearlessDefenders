@@ -67,7 +67,7 @@ class TweetStream extends Component {
       .catch(err => console.warn(err));
   }
  
-  componentDidUnmount() {
+  componentWillUnmount() {
     this.setState({ showStream: false });
 
     if (this.state.showStream === true) {
