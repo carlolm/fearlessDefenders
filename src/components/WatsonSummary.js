@@ -17,7 +17,7 @@ class WatsonSummary extends Component {
 
   generateChart() {
 
-    console.log('*** companiesSummary length: ', this.props.companiesSummary.length);
+    console.log('*** companiesSummary length: ', this.props.companiesSummary.length || 'companiesSummary is empty');
 
     if (this.props.companiesSummary.length !== 0) {
 

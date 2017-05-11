@@ -82,10 +82,6 @@ export const getCompanySummary = () => {
   const url = '/api/db/allCompanies';
   return fetch(url)
     .then(res => res.json())
-    .then((data) => {
-      return data;
-    })
-    .catch((err) => {
-      return [];
-    });
+    .then(data => data)
+    .catch(err => []);
 };

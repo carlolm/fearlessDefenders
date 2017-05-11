@@ -16,7 +16,7 @@ Main.propTypes = {
 };
 
 Main.defaultProps = {
-  data: { text: 'coming soon' },
+  data: [],
 };
 
 export default Main;
