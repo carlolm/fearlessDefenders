@@ -14,44 +14,47 @@ class App extends React.Component {
     super(props);
     this.state = {
       data: {},
-      ticker: 'TWTR',
+      ticker: 'none',
       companiesSummary: [],
     };
 
     this.fetchData = this.fetchData.bind(this);
     this.changeTicker = this.changeTicker.bind(this);
-    this.fetchCompaniesSummary = this.fetchCompaniesSummary.bind(this);
+    // this.fetchCompaniesSummary = this.fetchCompaniesSummary.bind(this);
   }
 
   fetchData(symbol) {
     const numberOfDays = 5;
     const dates = getDates(numberOfDays);
 
-    Promise.all(dates.map(date => getSentiment(date, symbol)))
-      .then(data => this.setState({ data }))
+    const all = Promise.all(dates.map(date => getSentiment(date, symbol)));
+    const companies = getCompanySummary();
+
+    Promise.all([all, companies])
+      .then(([data, companiesSummary]) => this.setState({ companiesSummary, data, ticker: symbol }))
       .then(() => {
-        this.fetchCompaniesSummary(symbol);
+        // this.fetchCompaniesSummary();
         console.log('SUCCESS!!');
       });
   }
 
-  fetchCompaniesSummary(symbol) {
+  // fetchCompaniesSummary() {
 
-    Promise.resolve(getCompanySummary())
-      .then((companiesSummary) => {
-        (companiesSummary.length > 0) ? this.setState({ companiesSummary, ticker: symbol }) : null;
-      })
-      // .then(() => this.setState({ ticker: symbol }))
-    .catch(err => console.warn({error: `fetchCompaniesSummary error: ${err}`}));
+  //   Promise.resolve(getCompanySummary())
+  //     .then((companiesSummary) => {
+  //       (companiesSummary.length > 0) ? this.setState({ companiesSummary }) : null;
+  //     })
+  //     // .then(() => this.setState({ ticker: symbol }))
+  //   .catch(err => console.warn({error: `fetchCompaniesSummary error: ${err}`}));
 
-  }
+  // }
 
   changeTicker(ticker) {
     // this.setState({ ticker });
   }
 
   componentWillMount() {
-    this.fetchCompaniesSummary('AAPL');  // Initialize with a value
+    // this.fetchCompaniesSummary();  // Initialize with a value
   }
 
   componentDidMount() {
@@ -69,7 +72,7 @@ class App extends React.Component {
         </div>
         <div className="content">
           <Sidebar />
-          <Main ticker={this.state.ticker} data={this.state.data}/>
+          <Main ticker={this.state.ticker} data={this.state.data} />
           <Tweets companiesSummary={this.state.companiesSummary} />
         </div>
       </div>
