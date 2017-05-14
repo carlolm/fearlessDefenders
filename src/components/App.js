@@ -19,8 +19,10 @@ class App extends React.Component {
     };
 
     this.fetchData = this.fetchData.bind(this);
-    this.changeTicker = this.changeTicker.bind(this);
-    // this.fetchCompaniesSummary = this.fetchCompaniesSummary.bind(this);
+  }
+
+  componentDidMount() {
+    this.fetchData(this.state.ticker);
   }
 
   fetchData(symbol) {
@@ -33,32 +35,8 @@ class App extends React.Component {
     Promise.all([all, companies])
       .then(([data, companiesSummary]) => this.setState({ companiesSummary, data, ticker: symbol }))
       .then(() => {
-        // this.fetchCompaniesSummary();
         console.log('SUCCESS!!');
       });
-  }
-
-  // fetchCompaniesSummary() {
-
-  //   Promise.resolve(getCompanySummary())
-  //     .then((companiesSummary) => {
-  //       (companiesSummary.length > 0) ? this.setState({ companiesSummary }) : null;
-  //     })
-  //     // .then(() => this.setState({ ticker: symbol }))
-  //   .catch(err => console.warn({error: `fetchCompaniesSummary error: ${err}`}));
-
-  // }
-
-  changeTicker(ticker) {
-    // this.setState({ ticker });
-  }
-
-  componentWillMount() {
-    // this.fetchCompaniesSummary();  // Initialize with a value
-  }
-
-  componentDidMount() {
-    this.fetchData(this.state.ticker);
   }
 
   render() {
@@ -66,12 +44,9 @@ class App extends React.Component {
       <div className="site-wrap">
         <div className="header">
           <h1>Hack Trader</h1>
-        </div>
-        <div className="nav">
           <Search fetchData={this.fetchData} changeTicker={this.changeTicker} />
         </div>
         <div className="content">
-          <Sidebar />
           <Main ticker={this.state.ticker} data={this.state.data} />
           <Tweets companiesSummary={this.state.companiesSummary} />
         </div>

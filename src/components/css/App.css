@@ -10,9 +10,6 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  max-width: 960px;
-  margin: auto;
-  padding: 10px;
 }
 
 .header {
