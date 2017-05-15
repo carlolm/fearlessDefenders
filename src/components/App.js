@@ -26,7 +26,7 @@ class App extends React.Component {
 
   fetchData(symbol) {
     if (!this.state.ticker) { return; }
-    const numberOfDays = 5;
+    const numberOfDays = 7;
     const dates = getDates(numberOfDays);
 
     const all = Promise.all(dates.map(date => getSentiment(date, symbol)));
