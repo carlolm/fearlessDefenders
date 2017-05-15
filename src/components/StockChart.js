@@ -17,13 +17,13 @@ class StockChart extends Component {
 
   updateChart() {
     (this.props.ticker !== 'none') ? this.createChart(this.props.ticker) : null;
-  }   
+  }
 
   createChart() {
     const ticker = this.props.ticker;
-    
+
     console.log('** STOCK CHART - createChart: ', ticker);
-    
+
     $.ajax({
       type: 'GET',
       url: `/api/quandl/${ticker}`,
@@ -121,11 +121,12 @@ class StockChart extends Component {
   componentDidUpdate() {
     this.updateChart();
   }
- 
+
   render() {
     return (
       <div className="chart-container">
-        { (this.props.ticker === 'none' ) ? <h2> Enter a stock to begin </h2> : 
+        { (this.props.ticker === 'none') ? <h2> Enter a stock to begin </h2> :
+
         <h2>{this.props.ticker} Stock Price</h2> }
         <canvas className="center" height="300px" id="stock-chart" />
       </div>

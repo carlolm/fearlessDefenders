@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Search from './Search';
-import Sidebar from './Sidebar';
 import Main from './Main';
 import Tweets from './Tweets';
 
