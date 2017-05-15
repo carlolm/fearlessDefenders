@@ -13,7 +13,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       data: [],
-      ticker: 'none',
+      ticker: 'TWTR',
       companiesSummary: [],
     };
 
@@ -25,6 +25,7 @@ class App extends React.Component {
   }
 
   fetchData(symbol) {
+    if (!this.state.ticker) { return; }
     const numberOfDays = 5;
     const dates = getDates(numberOfDays);
 

@@ -15,6 +15,15 @@ class WatsonSummary extends Component {
     this.generateChart = this.generateChart.bind(this);
   }
 
+  componentDidMount() {
+    debugger;
+    this.generateChart();
+  }
+
+  componentDidUpdate() {
+    this.generateChart();
+  }
+
   generateChart() {
 
     console.log('*** companiesSummary length: ', this.props.companiesSummary.length || 'companiesSummary is empty');
@@ -66,14 +75,6 @@ class WatsonSummary extends Component {
         },
       });
     }
-  }
-
-  componentDidMount() {
-    this.generateChart();
-  }
-
-  componentDidUpdate() {
-    this.generateChart();
   }
 
   render() {
