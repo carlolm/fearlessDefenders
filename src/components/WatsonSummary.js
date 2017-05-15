@@ -16,7 +16,6 @@ class WatsonSummary extends Component {
   }
 
   componentDidMount() {
-    debugger;
     this.generateChart();
   }
 
@@ -25,23 +24,20 @@ class WatsonSummary extends Component {
   }
 
   generateChart() {
-
     console.log('*** companiesSummary length: ', this.props.companiesSummary.length || 'companiesSummary is empty');
 
     if (this.props.companiesSummary.length !== 0) {
-
       const labels = this.props.companiesSummary.map(tuple => tuple[0]);
       const data = this.props.companiesSummary.map(tuple => tuple[2] * 100);
 
       let axisMax = Math.max(Math.max.apply(null, data), -Math.min.apply(null, data));
-      axisMax = Math.min(100, Math.ceil(axisMax / 100 * 4) * 25);
+      axisMax = Math.min(100, Math.ceil((axisMax / 100) * 4) * 25);
 
       const colors = data.map((score) => {
         if (score >= 0) {
           return `rgba(75, 192, 192, ${Math.max(score / axisMax, 0.25)})`;
-        } else {
-          return `rgba(255, 99, 132, ${Math.max(-score / axisMax, 0.25)})`
         }
+        return `rgba(255, 99, 132, ${Math.max(-score / axisMax, 0.25)})`;
       });
 
       ctx = document.getElementById('watson-chart');
@@ -51,10 +47,10 @@ class WatsonSummary extends Component {
       barChart = new Chart(ctx, {
         type: 'horizontalBar',
         data: {
-          labels: labels,
+          labels,
           datasets: [{
             label: 'Watson Score',
-            data: data,
+            data,
             backgroundColor: colors,
             borderColor: colors,
             borderWidth: 1,
@@ -87,9 +83,5 @@ class WatsonSummary extends Component {
 
 
 }
-
-WatsonSummary.propTypes = {
-  // : React.PropTypes.
-};
 
 export default WatsonSummary;
