@@ -47,7 +47,7 @@ class StockChart extends Component {
             console.log('j: ', j);
             while(this.props.data[j] !== undefined && this.props.data[j].date !== json.dataset.data[i][0]) {
               j += 1;
-              console.log(this.props.data[j]);
+              // console.log(this.props.data[j]);
               console.log('wats date: ', this.props.data[j].date || '[StockChart] ** watson date is null **');
               console.log('quandl date: ', json.dataset.data[i][0]);
             }
