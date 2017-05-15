@@ -27,7 +27,7 @@ class Search extends React.Component {
     const { fetchData } = this.props;
     const { searchValue } = this.state;
     fetchData(searchValue);
-    console.log(searchValue + ' Submitted')
+    console.log(`${searchValue} Submitted`)
   }
 
   render() {
