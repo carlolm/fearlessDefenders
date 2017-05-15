@@ -6,7 +6,7 @@ import './css/Main.css';
 
 const Main = ({ ticker, data }) => (
   <div className="main">
-    <StockChart ticker={ticker} data = {data}/>
+    <StockChart ticker={ticker} data={data} />
   </div>
 );
 
