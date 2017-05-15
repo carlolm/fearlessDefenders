@@ -45,7 +45,7 @@ class StockChart extends Component {
             labels.unshift(json.dataset.data[i][0]);
             quandlData.unshift(json.dataset.data[i][4]);
             console.log('j: ', j);
-            while(this.props.data[j].date !== json.dataset.data[i][0]) {
+            while(this.props.data[j].date !== undefined && this.props.data[j].date !== json.dataset.data[i][0]) {
               j += 1;
               console.log('wats date: ', this.props.data[j].date);
               console.log('quandl date: ', json.dataset.data[i][0]);
